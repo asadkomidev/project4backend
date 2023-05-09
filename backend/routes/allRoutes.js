@@ -58,16 +58,16 @@ router.get("/current-user", requireSignin, currentUser);
 // product
 router.post("/add-product", upload.array("images"), addProduct);
 router.get("/get-product/:slug", getProduct);
-router.put("/edit-product/:id", requireSignin, editProduct);
-router.delete("/delete-product/:id", requireSignin, deleteProduct);
+router.put("/edit-product/:id", editProduct);
+router.delete("/delete-product/:id", deleteProduct);
 router.get("/all-products", getProducts);
 // category
 router.post("/add-category", addCategory);
 router.get("/all-categories", getCategories);
-router.delete("/delete-category/:id", requireSignin, deleteCategory);
+router.delete("/delete-category/:id", deleteCategory);
 // sub category
 router.post("/add-subcategory", addSubCategory);
 router.get("/all-subcategories", getSubCategories);
-router.delete("/delete-subcategory/:id", requireSignin, deleteSubCategory);
+router.delete("/delete-subcategory/:id", deleteSubCategory);
 
 module.exports = router;
