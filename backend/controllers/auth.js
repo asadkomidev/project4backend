@@ -26,7 +26,7 @@ export const login = async (req, res) => {
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, city } = req.body;
     if (!name) return res.status(400).send("Name is required");
     if (!password || password.length < 6) {
       return res

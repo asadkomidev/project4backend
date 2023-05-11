@@ -42,8 +42,6 @@ export const addProduct = async (req, res) => {
       images.push(result.secure_url);
     }
 
-    console.log("Images: ==>", images);
-
     const newProduct = new Product({
       name: name,
       slug: slugify(name),
@@ -122,7 +120,50 @@ export const getProduct = async (req, res) => {
 
 export const editProduct = async (req, res) => {
   try {
-    await Product.findByIdAndUpdate(req.params.id, req.body);
+    const {
+      name,
+      slug,
+      description,
+      price,
+      category,
+      subCategory,
+      seller,
+      year,
+      make,
+      model,
+      type,
+      color,
+      condition,
+      city,
+      phone,
+    } = req.body;
+
+    let images = [];
+    let url;
+
+    for (let i = 0; i < req.files.length; i++) {
+      const result = await cloudinary.uploader.upload(req.files[i].path);
+      images.push(result.secure_url);
+    }
+
+    await Product.findByIdAndUpdate(req.params.id, {
+      name: name,
+      slug: slugify(name),
+      description: description,
+      price: price,
+      images,
+      category,
+      subCategory,
+      seller,
+      year,
+      make,
+      model,
+      type,
+      color,
+      condition,
+      city,
+      phone,
+    });
     res.send({
       success: true,
       message: "Product Updated successfully",

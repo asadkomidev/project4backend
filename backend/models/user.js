@@ -32,6 +32,24 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
+
+    // New
+    city: {
+      type: String,
+      required: false,
+    },
+    phone: {
+      type: String,
+      required: false,
+    },
+    desc: {
+      type: String,
+      required: false,
+    },
+    isSeller: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { timestamps: true }
